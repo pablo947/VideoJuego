@@ -2,15 +2,20 @@ import streamlit as st
 import pandas as pd
 import os
 
+# Configuración de la página
+st.set_page_config(page_title="Asesor Vivienda", page_icon="🏠")
+
+# Encabezado visual
+st.image("https://cdn-icons-png.flaticon.com/512/814/814513.png", width=80)
+st.markdown("## 🏠 Bienvenido al Asesor Virtual de Vivienda")
+st.markdown("Consulta tu estado o registra tus datos para obtener tu puntuación 🧠")
+
 # Cargar base de datos si existe
 file_path = 'clientes.csv'
 if os.path.exists(file_path):
     df = pd.read_csv(file_path)
 else:
     df = pd.DataFrame()
-
-# Título
-st.title("🏡 Chatbot Asesor de Vivienda")
 
 # Consulta de cliente
 id_input = st.text_input("🔍 Ingrese su ID (o deje en blanco si es nuevo):")
@@ -22,15 +27,15 @@ else:
     st.warning("⚠️ ID no encontrado. Ingrese sus datos para registrarse:")
 
     with st.form("formulario"):
-        genero = st.selectbox("Género", ["Mujer", "Hombre"])
-        estrato = st.number_input("Estrato socio económico", min_value=1, max_value=6)
-        endeudamiento = st.number_input("Nivel de endeudamiento (0 a 100)", min_value=0, max_value=100)
-        tipo_gestion = st.selectbox("Tipo de Gestión", ["Contactado", "No Contactado"])
-        tipo_interes = st.selectbox("Tipo de Interés", ["De 0 a 30 días", "De 31 a 60 días", "De 61 a 90 días", "Más de 91 días"])
-        nivel_academico = st.selectbox("Nivel académico", ["Primaria", "Secundaria", "Técnico", "Tecnólogo", "Profesional", "Especialización", "Maestría", "Doctorado"])
-        tipo_contrato = st.selectbox("Tipo de contrato", ["Fijo", "Indefinido", "Obra o labor", "Prestación de servicios"])
-        motivo = st.selectbox("Motivo de compra", ["Para vivir", "Para inversión"])
-        ahorro = st.selectbox("Tipo de ahorro", ["No tiene ahorros", "CDT", "Cuenta de ahorro", "Cuenta corriente", "Cesantias", "AFC", "Otros"])
+        genero = st.selectbox("👤 Género", ["Mujer", "Hombre"])
+        estrato = st.number_input("🏘️ Estrato socio económico", min_value=1, max_value=6)
+        endeudamiento = st.number_input("💳 Nivel de endeudamiento (0 a 100)", min_value=0, max_value=100)
+        tipo_gestion = st.selectbox("📞 Tipo de Gestión", ["Contactado", "No Contactado"])
+        tipo_interes = st.selectbox("⏳ Tipo de Interés", ["De 0 a 30 días", "De 31 a 60 días", "De 61 a 90 días", "Más de 91 días"])
+        nivel_academico = st.selectbox("🎓 Nivel académico", ["Primaria", "Secundaria", "Técnico", "Tecnólogo", "Profesional", "Especialización", "Maestría", "Doctorado"])
+        tipo_contrato = st.selectbox("📄 Tipo de contrato", ["Fijo", "Indefinido", "Obra o labor", "Prestación de servicios"])
+        motivo = st.selectbox("🎯 Motivo de compra", ["Para vivir", "Para inversión"])
+        ahorro = st.selectbox("💰 Tipo de ahorro", ["No tiene ahorros", "CDT", "Cuenta de ahorro", "Cuenta corriente", "Cesantias", "AFC", "Otros"])
         submitted = st.form_submit_button("Enviar")
 
     if submitted:
